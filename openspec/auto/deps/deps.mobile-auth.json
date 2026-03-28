@@ -1,0 +1,15 @@
+{
+  "mobile-auth-step-01-login-entry-and-otp-send": [],
+  "mobile-auth-step-02-otp-login-and-session-bootstrap": [
+    "mobile-auth-step-01-login-entry-and-otp-send"
+  ],
+  "mobile-auth-step-03-consent-gating-and-post-login-access": [
+    "mobile-auth-step-02-otp-login-and-session-bootstrap"
+  ],
+  "mobile-auth-step-04-token-refresh-and-unauthorized-recovery": [
+    "mobile-auth-step-03-consent-gating-and-post-login-access"
+  ],
+  "mobile-auth-step-05-device-session-management-and-logout": [
+    "mobile-auth-step-04-token-refresh-and-unauthorized-recovery"
+  ]
+}

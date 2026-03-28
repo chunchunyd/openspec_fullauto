@@ -1,0 +1,21 @@
+{
+  "users-part1-step-01-profile-data-model-and-self-read-baseline": [],
+  "users-part1-step-02-self-profile-update-boundary": [
+    "users-part1-step-01-profile-data-model-and-self-read-baseline"
+  ],
+  "users-part1-step-03-preferences-and-notification-settings-baseline": [
+    "users-part1-step-01-profile-data-model-and-self-read-baseline"
+  ],
+  "users-part1-step-04-persistence-migration-closure": [
+    "users-part1-step-01-profile-data-model-and-self-read-baseline",
+    "users-part1-step-03-preferences-and-notification-settings-baseline"
+  ],
+  "users-part1-step-05-self-endpoints-request-validation-hardening": [
+    "users-part1-step-02-self-profile-update-boundary",
+    "users-part1-step-03-preferences-and-notification-settings-baseline"
+  ],
+  "users-part1-step-06-shared-openapi-contract-and-acceptance-closure": [
+    "users-part1-step-04-persistence-migration-closure",
+    "users-part1-step-05-self-endpoints-request-validation-hardening"
+  ]
+}

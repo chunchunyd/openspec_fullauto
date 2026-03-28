@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+**/__pycache__/
+runtime/*.json
+runtime/*.log
+runtime/sessions/*.json
+runtime/launch-logs/*.log

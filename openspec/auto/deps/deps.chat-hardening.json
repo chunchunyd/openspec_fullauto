@@ -1,0 +1,39 @@
+{
+  "chat-hardening-step-01-cuid-contract-and-id-validation-fix": [],
+  "chat-hardening-step-02-runtime-task-linkage-and-event-read-fix": [
+    "chat-hardening-step-01-cuid-contract-and-id-validation-fix"
+  ],
+  "chat-hardening-step-03-polling-finalization-and-completion-semantics": [
+    "chat-hardening-step-02-runtime-task-linkage-and-event-read-fix"
+  ],
+  "chat-hardening-step-04-dispatch-failure-state-and-retry-closure": [
+    "chat-hardening-step-03-polling-finalization-and-completion-semantics"
+  ],
+  "chat-hardening-step-05-dispatch-failure-response-state-alignment": [
+    "chat-hardening-step-04-dispatch-failure-state-and-retry-closure"
+  ],
+  "chat-hardening-step-06-polling-finalization-recovery-and-backfill": [
+    "chat-hardening-step-05-dispatch-failure-response-state-alignment"
+  ],
+  "chat-hardening-step-07-task-events-contract-realignment": [
+    "chat-hardening-step-06-polling-finalization-recovery-and-backfill"
+  ],
+  "chat-hardening-step-08-finalize-atomicity-and-read-model-reconciliation": [
+    "chat-hardening-step-07-task-events-contract-realignment"
+  ],
+  "chat-hardening-step-09-task-events-controlled-error-contract-closure": [
+    "chat-hardening-step-08-finalize-atomicity-and-read-model-reconciliation"
+  ],
+  "chat-hardening-step-10-chat-typecheck-and-acceptance-closure": [
+    "chat-hardening-step-09-task-events-controlled-error-contract-closure"
+  ],
+  "chat-hardening-step-11-finalize-target-state-reconciliation-closure": [
+    "chat-hardening-step-10-chat-typecheck-and-acceptance-closure"
+  ],
+  "chat-hardening-step-12-assistant-present-recovery-without-completion-payload": [
+    "chat-hardening-step-11-finalize-target-state-reconciliation-closure"
+  ],
+  "chat-hardening-step-13-task-events-terminal-state-preservation-without-runtime-linkage": [
+    "chat-hardening-step-12-assistant-present-recovery-without-completion-payload"
+  ]
+}

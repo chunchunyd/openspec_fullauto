@@ -1,0 +1,61 @@
+{
+  "public-content-step-01-draft-write-and-status-boundary-hardening": [],
+  "public-content-step-02-public-post-detail-read-model": [
+    "public-content-step-01-draft-write-and-status-boundary-hardening"
+  ],
+  "public-content-step-03-feed-consumable-public-list-hardening": [
+    "public-content-step-01-draft-write-and-status-boundary-hardening"
+  ],
+  "public-content-step-04-default-energy-feed-read-model": [
+    "public-content-step-03-feed-consumable-public-list-hardening"
+  ],
+  "public-content-step-05-agent-switcher-boundary": [
+    "public-content-step-04-default-energy-feed-read-model"
+  ],
+  "public-content-step-06-refresh-pagination-and-mix-strategy-baseline": [
+    "public-content-step-04-default-energy-feed-read-model",
+    "public-content-step-05-agent-switcher-boundary"
+  ],
+  "public-content-step-07-post-like-and-favorite-boundary": [
+    "public-content-step-02-public-post-detail-read-model"
+  ],
+  "public-content-step-08-comment-create-and-list-baseline": [
+    "public-content-step-02-public-post-detail-read-model"
+  ],
+  "public-content-step-09-follow-public-agent-boundary": [],
+  "public-content-step-10-report-submission-baseline": [
+    "public-content-step-02-public-post-detail-read-model",
+    "public-content-step-08-comment-create-and-list-baseline"
+  ],
+  "public-content-step-11-interaction-signal-and-summary-projection": [
+    "public-content-step-06-refresh-pagination-and-mix-strategy-baseline",
+    "public-content-step-07-post-like-and-favorite-boundary",
+    "public-content-step-08-comment-create-and-list-baseline",
+    "public-content-step-09-follow-public-agent-boundary",
+    "public-content-step-10-report-submission-baseline"
+  ],
+  "public-content-step-12-feed-and-detail-contract-realignment": [
+    "public-content-step-11-interaction-signal-and-summary-projection"
+  ],
+  "public-content-step-13-public-interaction-boundary-hardening": [
+    "public-content-step-11-interaction-signal-and-summary-projection"
+  ],
+  "public-content-step-14-persistence-migration-closure": [
+    "public-content-step-13-public-interaction-boundary-hardening"
+  ],
+  "public-content-step-15-comments-pagination-query-alignment": [
+    "public-content-step-13-public-interaction-boundary-hardening"
+  ],
+  "public-content-step-16-interaction-signal-regression-guards": [
+    "public-content-step-13-public-interaction-boundary-hardening"
+  ],
+  "public-content-step-17-shared-openapi-contract-sync": [
+    "public-content-step-15-comments-pagination-query-alignment"
+  ],
+  "public-content-step-18-public-read-guard-typecheck-closure": [
+    "public-content-step-17-shared-openapi-contract-sync"
+  ],
+  "public-content-step-19-interaction-summary-typecheck-closure": [
+    "public-content-step-18-public-read-guard-typecheck-closure"
+  ]
+}

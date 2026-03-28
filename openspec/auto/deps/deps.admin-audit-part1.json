@@ -1,0 +1,29 @@
+{
+  "admin-audit-part1-step-01-admin-identity-and-role-gate": [],
+  "admin-audit-part1-step-02-audit-center-read-boundary": [
+    "admin-audit-part1-step-01-admin-identity-and-role-gate"
+  ],
+  "admin-audit-part1-step-03-user-management-query-baseline": [
+    "admin-audit-part1-step-01-admin-identity-and-role-gate"
+  ],
+  "admin-audit-part1-step-04-user-status-governance-actions": [
+    "admin-audit-part1-step-01-admin-identity-and-role-gate",
+    "admin-audit-part1-step-02-audit-center-read-boundary",
+    "admin-audit-part1-step-03-user-management-query-baseline"
+  ],
+  "admin-audit-part1-step-05-user-read-guard-hardening": [
+    "admin-audit-part1-step-01-admin-identity-and-role-gate",
+    "admin-audit-part1-step-03-user-management-query-baseline"
+  ],
+  "admin-audit-part1-step-06-user-governance-state-machine-hardening": [
+    "admin-audit-part1-step-04-user-status-governance-actions"
+  ],
+  "admin-audit-part1-step-07-audit-query-boundary-hardening": [
+    "admin-audit-part1-step-02-audit-center-read-boundary"
+  ],
+  "admin-audit-part1-step-08-shared-openapi-and-acceptance-closure": [
+    "admin-audit-part1-step-05-user-read-guard-hardening",
+    "admin-audit-part1-step-06-user-governance-state-machine-hardening",
+    "admin-audit-part1-step-07-audit-query-boundary-hardening"
+  ]
+}

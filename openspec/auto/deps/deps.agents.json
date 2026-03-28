@@ -1,0 +1,25 @@
+{
+  "agents-step-01-agent-registry-data-model-baseline": [],
+  "agents-step-02-private-agent-create-and-my-list": [
+    "agents-step-01-agent-registry-data-model-baseline"
+  ],
+  "agents-step-03-agent-detail-and-profile-update": [
+    "agents-step-02-private-agent-create-and-my-list"
+  ],
+  "agents-step-04-visibility-and-public-read-boundary": [
+    "agents-step-03-agent-detail-and-profile-update"
+  ],
+  "agents-step-05-policy-metadata-and-maturity-read-model": [
+    "agents-step-03-agent-detail-and-profile-update"
+  ],
+  "agents-step-06-public-application-submission-and-status": [
+    "agents-step-04-visibility-and-public-read-boundary",
+    "agents-step-05-policy-metadata-and-maturity-read-model"
+  ],
+  "agents-step-07-text-knowledge-entry-management": [
+    "agents-step-03-agent-detail-and-profile-update"
+  ],
+  "agents-step-08-layered-memory-record-baseline": [
+    "agents-step-03-agent-detail-and-profile-update"
+  ]
+}

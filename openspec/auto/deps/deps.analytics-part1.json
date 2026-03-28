@@ -1,0 +1,21 @@
+{
+  "analytics-part1-step-01-event-dictionary-and-tracking-doc-baseline": [],
+  "analytics-part1-step-02-raw-event-ingestion-and-storage-anchor": [
+    "analytics-part1-step-01-event-dictionary-and-tracking-doc-baseline"
+  ],
+  "analytics-part1-step-03-server-side-emitter-and-nonblocking-write-boundary": [
+    "analytics-part1-step-02-raw-event-ingestion-and-storage-anchor"
+  ],
+  "analytics-part1-step-04-tracking-contract-and-emitter-realignment": [
+    "analytics-part1-step-03-server-side-emitter-and-nonblocking-write-boundary"
+  ],
+  "analytics-part1-step-05-raw-event-migration-and-generated-client-closure": [
+    "analytics-part1-step-04-tracking-contract-and-emitter-realignment"
+  ],
+  "analytics-part1-step-06-source-aware-ingestion-boundary": [
+    "analytics-part1-step-05-raw-event-migration-and-generated-client-closure"
+  ],
+  "analytics-part1-step-07-duplicate-conflict-controlled-failure-semantics": [
+    "analytics-part1-step-06-source-aware-ingestion-boundary"
+  ]
+}

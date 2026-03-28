@@ -1,0 +1,19 @@
+{
+  "chat-part1-step-01-session-and-message-data-model-baseline": [],
+  "chat-part1-step-02-agent-task-record-baseline": [
+    "chat-part1-step-01-session-and-message-data-model-baseline"
+  ],
+  "chat-part1-step-03-session-list-and-history-read-model": [
+    "chat-part1-step-01-session-and-message-data-model-baseline"
+  ],
+  "chat-part1-step-04-send-message-and-runtime-dispatch": [
+    "chat-part1-step-01-session-and-message-data-model-baseline",
+    "chat-part1-step-02-agent-task-record-baseline"
+  ],
+  "chat-part1-step-05-streaming-event-projection-and-assistant-message-persistence": [
+    "chat-part1-step-04-send-message-and-runtime-dispatch"
+  ],
+  "chat-part1-step-06-failure-state-and-retry-boundary": [
+    "chat-part1-step-05-streaming-event-projection-and-assistant-message-persistence"
+  ]
+}

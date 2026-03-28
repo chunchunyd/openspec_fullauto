@@ -1,0 +1,20 @@
+{
+  "mobile-foundation-step-01-app-shell-entry-boundary": [],
+  "mobile-foundation-step-02-http-contract-and-request-pipeline": [
+    "mobile-foundation-step-01-app-shell-entry-boundary"
+  ],
+  "mobile-foundation-step-03-session-storage-and-auth-state-primitives": [
+    "mobile-foundation-step-01-app-shell-entry-boundary",
+    "mobile-foundation-step-02-http-contract-and-request-pipeline"
+  ],
+  "mobile-foundation-step-04-feedback-and-error-boundary-primitives": [
+    "mobile-foundation-step-01-app-shell-entry-boundary",
+    "mobile-foundation-step-02-http-contract-and-request-pipeline"
+  ],
+  "mobile-foundation-step-05-foundation-telemetry-hooks": [
+    "mobile-foundation-step-01-app-shell-entry-boundary",
+    "mobile-foundation-step-02-http-contract-and-request-pipeline",
+    "mobile-foundation-step-03-session-storage-and-auth-state-primitives",
+    "mobile-foundation-step-04-feedback-and-error-boundary-primitives"
+  ]
+}

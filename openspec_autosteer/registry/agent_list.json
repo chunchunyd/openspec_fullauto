@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "agents": [
+    {
+      "agent_id": "codex-frontend-primary",
+      "label": "Codex Frontend Primary",
+      "model": "gpt-5.4",
+      "vendor": "openai",
+      "runner_type": "codex_cli",
+      "enabled": true,
+      "priority": 100,
+      "strengths": ["frontend_ui", "react", "refactor"],
+      "weaknesses": ["long_running_acceptance"],
+      "preferred_task_types": ["implement", "refine", "ui_fix"],
+      "forbidden_task_types": ["final_acceptance"],
+      "tooling_capabilities": ["shell", "git", "workspace_edit"],
+      "cost_level": "high",
+      "speed_level": "medium",
+      "context_window_level": "high",
+      "notes": "Preferred for React UI and codebase-wide refactors."
+    },
+    {
+      "agent_id": "claude-backend-primary",
+      "label": "Claude Backend Primary",
+      "model": "claude-code-default",
+      "vendor": "anthropic",
+      "runner_type": "claude_code",
+      "enabled": true,
+      "priority": 95,
+      "strengths": ["backend_logic", "api", "long_running_implement"],
+      "weaknesses": ["pixel_perfect_ui"],
+      "preferred_task_types": ["implement", "stabilize", "remediation"],
+      "forbidden_task_types": [],
+      "tooling_capabilities": ["shell", "git", "workspace_edit"],
+      "cost_level": "high",
+      "speed_level": "medium",
+      "context_window_level": "high",
+      "notes": "Preferred for backend implementation and multi-step code changes."
+    },
+    {
+      "agent_id": "codex-acceptance-reviewer",
+      "label": "Codex Acceptance Reviewer",
+      "model": "gpt-5.4",
+      "vendor": "openai",
+      "runner_type": "codex_cli",
+      "enabled": true,
+      "priority": 90,
+      "strengths": ["acceptance", "review", "consistency_check"],
+      "weaknesses": ["large_scale_generation"],
+      "preferred_task_types": ["acceptance", "review"],
+      "forbidden_task_types": ["primary_implementation"],
+      "tooling_capabilities": ["shell", "git", "workspace_edit"],
+      "cost_level": "high",
+      "speed_level": "medium",
+      "context_window_level": "high",
+      "notes": "Reserved for acceptance and review loops, not primary implementation."
+    }
+  ]
+}

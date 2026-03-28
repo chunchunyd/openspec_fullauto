@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "run_id": "run-20260328-002",
+  "mode": "development",
+  "status": "planned",
+  "series_scope": ["users-part1"],
+  "change_scope": [],
+  "current_stage": "planning",
+  "selected_agents": [
+    {
+      "agent_id": "claude-backend-primary",
+      "runner_type": "claude_code",
+      "task_type": "implement"
+    }
+  ],
+  "started_at": "2026-03-28T12:20:00+08:00",
+  "updated_at": "2026-03-28T12:20:00+08:00",
+  "last_message": "Initial control-layer state template.",
+  "linked_runtime_files": {
+    "openspec_py_latest_run": "openspec_py/runtime/latest-run.json"
+  }
+}

@@ -1,0 +1,141 @@
+schema: spec-driven
+
+context: |
+  项目名称: nenggan（能干）
+  默认语言: 中文；仅在 OpenSpec 结构化标题、目录名、技术标识或协议字段需要时保留英文。
+
+  产品定位:
+    - 以 AI Agent 为核心内容主体、互动主体与连接媒介的 AI 社交平台
+    - 核心链路围绕“创作者身份 -> AI Agent -> IP -> 内容 -> AI Agent -> 接受者身份”展开
+
+  首期目标:
+    - 验证用户与 Agent 的协同成长机制
+    - 验证 Agent 驱动的内容供给与互动闭环
+    - 建立可运行、可测试、可扩展的第一阶段技术底座
+
+  技术栈:
+    - Flutter（iOS / Android）
+    - Node.js + NestJS
+    - PostgreSQL
+    - Redis
+    - 对象存储
+
+  工程背景:
+    - 项目采用 monorepo
+    - apps: mobile / api / admin-web / worker / agent-runtime-mock
+    - 平台 API 与独立 runtime 通过统一 Agent Runtime 边界协作
+    - "`libs/agent-runtime` 负责 API 侧共享通信基建"
+    - "`packages/agent_runtime_contracts` 负责 task / event / error / proto 共享契约"
+    - 当前正式通信默认通过 gRPC provider；`mock-http` 仅用于兼容调试
+    - 第三方能力通过 adapter / port 封装
+    - 更完整的仓库结构规则以 repository-structure spec 为准
+    - "`docs/` 保存当前开发者说明，`doc/` 保存原始需求与早期参考材料；两者都不是当前行为真相源"
+    - openspec/ 作为独立 Git 仓库维护；主项目仓库跟踪一个指向外部规格仓库的 `openspec/` 符号链接
+    - 主项目代码 worktree 会自动继承该 `openspec/` 符号链接；自动化脚本只校验它存在，不应在子 worktree 内重新创建、替换或覆盖该链接
+    - 主项目代码仓库采用按 change 拆分的分支策略；一个可实施小 change 对应一个独立实现分支
+    - 主项目代码仓库默认使用 main 作为稳定发布分支，dev 作为当前集成主线；功能开发不要长期直接在 dev 上进行
+    - 当同一功能主题按 `xxx-step-xx-*` 拆成系列 change 时，应将 `step-xx` 之前的前缀视为 series prefix，例如 `mobile-foundation-step-03-network-contract-and-request-pipeline` 的 series prefix 是 `mobile-foundation`
+    - 系列化 change 应先从最新 `dev` 切出或同步 `series/<series-prefix>` 集成分支；若当前在规划 `step-01`，应把创建 `series/<series-prefix>` 视为系列启动动作
+    - 系列内的每个 step，包括 `step-01`，都应从 `series/<series-prefix>` 再切出 `feat/<change-id>`、`fix/<change-id>` 或 `chore/<change-id>` 等实现分支；非系列 change 再按原规则直接从最新 `dev` 切出实现分支
+    - 多个 `--prefix` 只用于并行执行彼此独立的系列；如果依赖图里出现跨 series prefix 的依赖，自动化脚本应直接 fail fast
+    - 如果多个系列实际围绕同一个目标能力相互依赖，应在生成 change 时直接合并到一个以目标命名的 series prefix，而不是先按模块分散命名再交叉依赖
+    - 主项目代码分支名应显式包含 change id；功能实现优先使用 feat/<change-id>，修复使用 fix/<change-id>，工程类改动使用 chore/<change-id>
+    - 单个 change 的实现过程中，每完成一个或少数几个紧密相关的 task，应及时提交一次
+    - 如果是续跑或接手已有 worktree，开始前应先检查当前实现分支上的 staged / unstaged / untracked 改动；这些改动默认视为该 change 的继承现场，应在其基础上继续或安全清理，不要直接忽略
+    - 系列 step 的 feat/fix/chore 分支完成并通过验收后应先合并回 `series/<series-prefix>`；非系列 change 完成后再合并回 `dev`
+    - 当系列 step 准备切回或回合并到 `series/<series-prefix>` 前，实现分支应由 agent 自己提交有效改动并保持工作区干净
+    - "`series/<series-prefix>` 合并回 `dev` 由人工把关执行，不作为 AI 或自动化代理的默认职责"
+    - 小 change 合并到上级集成分支时默认优先使用 `--no-ff merge`，保留实现分支上的阶段性提交历史
+    - dev 到 main 的发布合并由人工把关执行，不作为 AI 或自动化代理的默认职责
+    - 若任务同时修改实现与规格，应分别在主项目仓库和 openspec 仓库提交
+    - 若任务只修改其中一侧，则只提交对应仓库
+    - 当任务达到可同步状态时，应将对应提交推送到各自远端，并保持 change id 或任务标识一致
+    - Git 提交信息不得附带 Co-authored-by、Generated-by 或等价协作署名尾注
+
+  当前已建立 capability:
+    - admin
+    - agent-runtime-boundary
+    - agent-tasks
+    - agents
+    - analytics
+    - api-contracts
+    - audit-log
+    - auth
+    - cache
+    - chat
+    - content
+    - event-schema
+    - feed
+    - interactions
+    - moderation
+    - observability
+    - platform-actions
+    - queue
+    - repository-structure
+    - runtime-config
+    - service-health
+    - sms
+    - storage
+
+rules:
+  proposal:
+    - 使用中文撰写，聚焦单一变更。
+    - 必须包含“为什么要做”“本次变更包含什么”“本次变更不包含什么”“预期结果”“影响范围”。
+    - 优先引用已有 capability specs，不要在 proposal 里重复定义整套系统规则。
+    - 如果 change 同时涉及 API 后端与 `mobile` / `admin-web`，proposal 中应明确共享 HTTP contract 的影响范围，以及是否需要先执行 `openapi-export` 再推进前端接入。
+    - 在最终确定 change 范围前，应先检查该需求是否依赖 `libs/` 共享运行时服务或 `packages/` 共享契约；如果依赖未完成，应优先拆出前置小 change，或在 proposal 中显式说明补齐范围。
+    - 如果一个能力同时涉及多个 app、多个运行时或多个明显独立的 workstream，必须在创建时就拆成多个小 change，不要先生成一个大 change 再二次拆分。
+    - 如果同一 capability 下存在明确实施顺序，change id 应显式包含 `step-01`、`step-02` 这类顺序标记，方便按步骤推进与理解。
+    - 如果同一功能主题会一次性规划成多个 `step-xx` change，应在该批 change 的说明中明确 series prefix，并在整组 change 生成完成后补充 `openspec/auto/deps/deps.<series-prefix>.json` 依赖图。
+    - 如果多个 workstream 预计会在实现阶段互相依赖，应优先把它们规划进同一个以目标能力命名的 series prefix，而不是生成多个会交叉依赖的系列。
+    - 如果 change 预计会直接进入实现，proposal 或配套说明中应默认假设主项目代码将在 `feat/<change-id>`、`fix/<change-id>` 或 `chore/<change-id>` 分支上完成，而不是直接在 `dev` 上实施。
+    - 如果 change 涉及 Agent 调用、runtime 集成或流式 AI 结果，proposal 中应明确是否依赖 `libs/agent-runtime`、`packages/agent_runtime_contracts`、`packages/platform_action_contracts` 和 `packages/event_schema`。
+
+  design:
+    - 仅在跨模块边界、关键状态机、数据模型取舍或架构决策不直观时创建。
+    - 必须写清目标、边界、关键流程、状态流转、失败场景和与现有 specs 的关系。
+    - 设计中涉及仓库结构、真相源或运行时边界时，应引用 repository-structure spec，而不是在 design 中重新发明规则。
+    - 如果 change 依赖 `libs/` 或 `packages/` 中的共享层，design 应明确说明：复用现有共享层、补齐既有共享层，还是先拆出新的前置基础 change。
+    - 如果一个 change 涉及关键运行时链路，应在设计或任务中明确该 change 自身需要补充的日志与错误上下文，而不是默认留给单独的日志基线 change 统一兜底。
+    - 如果 change 同时涉及服务端和移动端运行时，设计应分别说明两侧日志接线方案，而不是默认两侧共用同一套实现。
+    - 如果 change 涉及 Agent runtime 调用，design 应明确区分 API 侧职责、runtime 侧职责、通信契约层和事件回流层，不得默认把 AI 执行塞回 `worker` 或业务模块内部。
+
+  tasks:
+    - 仅对可执行、可验证、完成后应该打勾的动作使用可勾选任务列表。
+    - 说明性备注、人工职责、非本 change 范围和长期约束应使用普通项目符号、编号列表或备注段落，不要写成 checkbox。
+    - 任务按 workstream 分组，例如：契约、服务端、客户端、数据、验证。
+    - 每项任务都应具体、可验证，避免模糊描述。
+    - 任务粒度默认控制在半天左右到一天；在已经具备系列分支与依赖管理时，优先把单个 change 收束到一个主目标，必要时继续拆到半天以内。
+    - 新建 change 时优先将任务规模控制在一个 app 的单一子能力范围内；如超出该范围，应拆成多个 change。
+    - "`tasks.md` 的验收 / 验证部分默认应显式加入 ESLint 验收和 TypeScript 验收，并分别引用主仓库 `docs/eslint-style-notes.md` 与 `docs/tsc-fix-summary.md`；如果当前 change 确实不适用其中某项，必须在任务中明确写出原因，不能静默省略。"
+    - 对 `xxx-step-xx-*` 这类系列 change，`tasks.md` 头部必须使用固定的自动化分支门禁模板，至少保留两条 checkbox：`- [ ] 自动化确认系列集成分支 \`series/<series-prefix>\` 已就绪（若不存在则从最新 \`dev\` 创建）` 与 `- [ ] 自动化从 \`series/<series-prefix>\` 切出 \`<implementation-branch>\` 实现分支，并将当前 worktree 绑定到该分支`；这两条保留给 `openspec/auto/auto_apply.sh` 自动执行和勾选，不允许自由改写句式。
+    - 如果 change 同时涉及 API 后端与 `mobile` / `admin-web`，任务中应显式体现“先稳定 API contract、执行 `openapi-export`，再推进前端正式接入”。
+    - 任务清单应把“从最新 `dev` 切出实现分支并确认工作树边界”视为实施前门禁，而不是可省略的口头约定。
+    - 如果 change 依赖共享服务或共享契约，任务中应显式包含“检查现有共享层是否可复用”的前置动作；如不可复用，应显式列出补齐或前置拆分任务。
+    - 如果任务依赖前置 change，应在 change 命名和任务说明中体现先后顺序，而不是只在口头说明中表达。
+    - 对 `xxx-step-xx-*` 这类系列 change，`tasks.md` 结尾必须使用固定的自动化收口模板：`- [ ] 自动化将 \`<implementation-branch>\` merge 回 \`series/<series-prefix>\`，保留实现分支上的阶段性提交历史`；`series/<series-prefix>` 合并回 `dev` 由人工执行的说明写成普通项目符号或备注，不纳入 agent 默认任务，也不要写成 checkbox。
+    - 如果 `tasks.md` 中出现 `commit`、`提交`、`阶段性提交`、`交接前收口提交` 或等价的提交类任务，该任务文本必须显式引用 `openspec/docs/git-commit-guidelines.md`，例如“按 `openspec/docs/git-commit-guidelines.md` 中的约定提交本阶段改动”；不要只写“及时 commit”或“提交代码”。
+    - 当同一系列的全部 change 已经生成后，应在 `openspec/auto/deps/` 下创建 `deps.<series-prefix>.json` 依赖图，只表达真实阻塞关系，供自动化脚本并行调度。
+    - 只有彼此独立的系列才允许通过多个 `--prefix` 并行执行；如果不同系列存在交叉依赖，应在 change 规划阶段改成单一目标前缀，而不是把交叉依赖留给自动化脚本处理。
+    - 在完整 Git 管理规则已明确时，不应长期保留“一个 change 同时覆盖多个并列主产物”的标题与范围；如果标题需要用“X、Y 与 Z”才能说明内容，默认继续拆分，除非这些内容无法独立实现和验收。
+    - 不应让多个明显独立的 workstream 长时间共享一批未提交改动；当一个或少数几个紧密相关任务达到可验证状态时，应形成阶段性提交。
+    - 涉及运行时主流程、异步任务、外部服务调用或关键状态流转的 change，应在各自任务中主动加入必要的结构化日志与错误上下文接入项。
+    - 涉及运行时逻辑、状态流转、权限控制、外部依赖调用或关键用户主流程的 change，应默认包含测试任务；测试类型按变化性质选择单元测试、widget 测试、集成测试或等价验证。
+    - 如果 change 会新增或实质修改单元测试、集成测试、widget 测试或等价自动化测试文件，任务中应显式要求在测试文件头注释写明完整执行指令。
+    - 测试任务应尽量贴近对应 workstream 同步规划和更新，不要长期只在 tasks 末尾追加一个笼统“补测试”项。
+    - 涉及非直观逻辑、状态机、协议适配、缓存/队列语义、安全边界或复杂容错的任务，应显式包含必要注释或模块说明的补充项。
+    - 如果 change 新增或实质修改 `libs/`、`packages/` 这类共享层，任务中应显式包含对应 README 或等价模块文档更新。
+    - 如果 change 改变开发命令、环境变量、目录结构、脚本入口、人工操作流程或共享层使用方式，任务中应显式包含根 README 或相关入口文档更新。
+    - 如果某个 change 暂不适合补自动化测试，任务中必须明确说明原因，并保留可重复执行的手动验收步骤。
+    - 如果 change 涉及 Agent runtime 调用，任务中应显式检查：是否复用了 `libs/agent-runtime`、是否沿用 `packages/agent_runtime_contracts`、是否正确区分了 runtime 任务与 `apps/worker` 的非 AI job。
+
+  specs:
+    - 默认使用中文正文；保留 OpenSpec 的 Requirement 和 Scenario 结构化标题。
+    - 只描述当前系统承诺的行为、边界和约束，不写实现步骤、change 协作顺序或提交节奏。
+    - capability spec 不承载分支策略、README 更新义务、任务拆分规则等流程治理；这类规则应落在 `project.md`、`CHANGE_START_CHECKLIST.md` 或具体 change artifacts。
+    - 若代码或架构仍在探索，不要把目标蓝图、长期预留或希望状态提前写成当前 requirement；可以在 Purpose 中说明范围，但 requirement 只写当前事实或明确承诺。
+    - 为兼容 OpenSpec 官方校验器，capability spec 与 change spec delta 的 Requirement 正文必须显式包含大写 `MUST` 或 `SHALL`；推荐在中文 requirement 描述后补一行等价英文规范句。
+    - 每个 Requirement 至少包含一个 `#### Scenario:` 小节；不要只写 requirement 段落，也不要只用普通项目符号替代结构化 Scenario 标题。
+    - spec 文件必须使用标准标题 `## Purpose` 和 `## Requirements`；不要用 `## Overview` 或其他自定义标题替代 `## Purpose`。
+    - 与其他 capability 的边界必须清楚，避免重复定义。
+    - 在 change spec delta 中优先使用 ADDED、MODIFIED、REMOVED；对 MODIFIED Requirement 写出修改后的完整文本。

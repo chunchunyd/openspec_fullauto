@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-28T12:30:00+08:00",
+  "items": [
+    {
+      "proposal_id": "prop-20260328-001",
+      "change_id": "users-part1-step-05-self-endpoints-request-validation-hardening",
+      "series": "users-part1",
+      "step": 5,
+      "phase": "development",
+      "derived_status": "in_progress",
+      "created_at": "2026-03-28T12:10:00+08:00",
+      "updated_at": "2026-03-28T12:30:00+08:00",
+      "last_run_id": "run-20260328-002",
+      "last_acceptance_id": null,
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-28T12:30:00+08:00",
+  "agents": [
+    {
+      "agent_id": "codex-frontend-primary",
+      "score": 0.86,
+      "confidence": 0.72,
+      "samples": 18,
+      "metrics": {
+        "completion_rate": 0.89,
+        "first_pass_rate": 0.61,
+        "retry_rate": 0.22,
+        "needs_human_rate": 0.11,
+        "test_pass_rate": 0.83,
+        "review_findings_per_task": 0.44,
+        "regression_rate": 0.06
+      },
+      "task_type_scores": {
+        "implement": 0.9,
+        "ui_fix": 0.94,
+        "acceptance": 0.58
+      },
+      "tag_scores": {
+        "frontend_ui": 0.95,
+        "react": 0.91,
+        "prisma": 0.56
+      },
+      "notes": "Strong on UI delivery, weaker on backend edge cases."
+    },
+    {
+      "agent_id": "claude-backend-primary",
+      "score": 0.84,
+      "confidence": 0.68,
+      "samples": 15,
+      "metrics": {
+        "completion_rate": 0.87,
+        "first_pass_rate": 0.57,
+        "retry_rate": 0.28,
+        "needs_human_rate": 0.13,
+        "test_pass_rate": 0.85,
+        "review_findings_per_task": 0.39,
+        "regression_rate": 0.07
+      },
+      "task_type_scores": {
+        "implement": 0.88,
+        "stabilize": 0.9,
+        "acceptance": 0.53
+      },
+      "tag_scores": {
+        "backend_logic": 0.91,
+        "api": 0.89,
+        "frontend_ui": 0.41
+      },
+      "notes": "Strong on backend and long-running implementation tasks."
+    }
+  ]
+}

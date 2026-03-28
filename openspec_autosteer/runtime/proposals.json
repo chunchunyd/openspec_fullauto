@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-28T12:30:00+08:00",
+  "proposals": [
+    {
+      "proposal_id": "prop-20260328-001",
+      "title": "Harden self endpoint validation",
+      "summary": "Strengthen request validation for self endpoints and align error handling.",
+      "source_type": "planner",
+      "source_run_id": "run-20260328-001",
+      "phase": "development",
+      "status": "converted_to_change",
+      "priority": "high",
+      "capability_tags": ["users", "api", "validation"],
+      "depends_on": [],
+      "acceptance_required": true,
+      "created_at": "2026-03-28T12:00:00+08:00",
+      "updated_at": "2026-03-28T12:10:00+08:00"
+    }
+  ]
+}

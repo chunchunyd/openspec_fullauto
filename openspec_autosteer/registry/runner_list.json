@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "runners": [
+    {
+      "runner_type": "codex_cli",
+      "label": "Codex CLI",
+      "vendor": "openai",
+      "enabled": true,
+      "command": "codex",
+      "args_template": [],
+      "environment_requirements": ["CODEX_HOME"],
+      "supports_tools": true,
+      "supports_multiline_prompt": true,
+      "supports_streaming": true,
+      "supports_resume": false,
+      "rate_limit_strategy": "provider_retry",
+      "output_parser": "codex_v1",
+      "error_classifier": "codex_v1",
+      "notes": "Primary runner for Codex-based agents."
+    },
+    {
+      "runner_type": "claude_code",
+      "label": "Claude Code",
+      "vendor": "anthropic",
+      "enabled": true,
+      "command": "claude",
+      "args_template": [],
+      "environment_requirements": [],
+      "supports_tools": true,
+      "supports_multiline_prompt": true,
+      "supports_streaming": true,
+      "supports_resume": false,
+      "rate_limit_strategy": "provider_retry",
+      "output_parser": "claude_code_v1",
+      "error_classifier": "claude_code_v1",
+      "notes": "Primary runner for Claude Code-based agents."
+    }
+  ]
+}
